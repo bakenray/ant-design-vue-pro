@@ -10,7 +10,6 @@ const routes = [
   // 用户
   {
     path: "/user",
-    name: "user",
     component: () =>
       import(
         /* webpackChunkName: "layout" */ "../components/layouts/UserLayout.vue"
@@ -37,6 +36,7 @@ const routes = [
   // 仪表盘
   {
     path: "/",
+    showInMenu: true,
     component: () =>
       import(
         /* webpackChunkName: "layout" */ "../components/layouts/BasicLayout.vue"
@@ -49,11 +49,13 @@ const routes = [
       {
         path: "/dashboard",
         name: "dashboard",
+        meta: { icon: "dashboard", title: "仪表盘" },
         component: { render: h => h("router-view") },
         children: [
           {
             path: "/dashboard/analysis",
             name: "analysis",
+            meta: { title: "分析页" },
             component: () =>
               import(
                 /* webpackChunkName:"dashboard" */ "../views/Dashboard/Analysis"
@@ -65,11 +67,14 @@ const routes = [
       {
         path: "/from",
         name: "from",
+        meta: { icon: "from", title: "表单" },
         component: { render: h => h("router-view") },
         children: [
           {
             path: "/from/basic-from",
             name: "basicfrom",
+            showChildrenInMenu: true,
+            meta: { title: "基础表单" },
             component: () =>
               import(
                 /* webpackChunkName:"from" */ "../views/Froms/BasicFrom.vue"
@@ -78,6 +83,7 @@ const routes = [
           {
             path: "/from/step-from",
             name: "stepfrom",
+            meta: { title: "分布表单" },
             component: () =>
               import(
                 /* webpackChunkName:"from" */ "../views/Froms/StepFrom/Index.vue"
